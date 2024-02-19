@@ -1,3 +1,4 @@
 # Table of contents
 
-* [GitBook](README.md)
+* [Git Book](README.md)
+* [Page 1](page-1.md)

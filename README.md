@@ -44,6 +44,8 @@
 - [gitignore 파일 생성 주소](https://www.toptal.com/developers/gitignore)
 - [github node gitignore](https://github.com/github/gitignore/blob/main/Node.gitignore)
 
+### Typescript 설치 및 환경설정
+
 ### ESLint 설치 및 환경설정
 
 ```typescript
@@ -96,6 +98,10 @@ env: {
 ```
 
 - .eslintignore 파일 생성 후 .gitignore 파일과 동일하게 작성
+
+### React 설치 및 설정
+
+### 테스트 도구 설치 (Jest)
 
 ### Parcel 설치 및 환경설정
 

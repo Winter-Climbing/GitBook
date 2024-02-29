@@ -4,6 +4,6 @@
 
 * [개발환경](README.md)
 
-***
+## Typescript
 
-* [Typescript](typescript.md)
+* [Type vs Interface](typescript/type-vs-interface.md)

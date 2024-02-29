@@ -4,7 +4,7 @@
 
 - Facebook에서 개발한 JS 테스팅 프레임워크다.
 
-### Jest 사용 방법
+### 기본 사용 방법
 
 ```typescript
 function add(x: number, y: number): number {

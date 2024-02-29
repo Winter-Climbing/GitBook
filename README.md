@@ -99,9 +99,63 @@ env: {
 
 - .eslintignore 파일 생성 후 .gitignore 파일과 동일하게 작성
 
+🤬 Error
+
+> Expected indentation of 1 tab but found 2 spaces.
+
+- eslintrc.js에서 위와 같은 에러가 떴다.
+- ESlint와 Prettier의 포맷팅 충돌로 추정하고 문제를 해결했다.
+
+```typescript
+// eslint-config-prettier 설치 후
+npm i -D eslint-config-prettier
+
+// .eslintrc.* 파일의 extends 배열에 prettier 요소를 추가한다.
+...
+  extends: ['xo', 'plugin:react/recommended', 'prettier']
+...
+```
+
 ### React 설치 및 설정
 
 ### 테스트 도구 설치 (Jest)
+
+- jest 설치 명령어
+
+```typescript
+npm i -D jest @types/jest @swc/core @swc/jest \
+  jest-environment-jsdom \
+  @testing-library/react @testing-library/jest-dom@5.16.4
+```
+
+- jest.config.js 파일 생성 후 설정
+
+```typescript
+module.exports = {
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+  transform: {
+    '^.+\\.(t|j)sx?$': [
+      '@swc/jest',
+      {
+        jsc: {
+          parser: {
+            syntax: 'typescript',
+            jsx: true,
+            decorators: true,
+          },
+          transform: {
+            react: {
+              runtime: 'automatic',
+            },
+          },
+        },
+      },
+    ],
+  },
+  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
+};
+```
 
 ### Parcel 설치 및 환경설정
 

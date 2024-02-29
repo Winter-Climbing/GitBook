@@ -12,6 +12,6 @@
 
 * [Page 1](react/page-1.md)
 
-## Jest
+## Test
 
-* [Page 2](jest/page-2.md)
+* [Jest](test/jest.md)

@@ -4,14 +4,10 @@
 
 * [개발환경](README.md)
 
-## Typescript
+## note
 
-* [Type vs Interface](typescript/type-vs-interface.md)
-
-## React
-
-* [Page 1](react/page-1.md)
-
-## Test
-
-* [Jest](test/jest.md)
+* [Typescript](note/typescript/README.md)
+  * [Type vs Interface](note/typescript/type-vs-interface.md)
+* [React](note/page-1.md)
+* [Test](note/test/README.md)
+  * [Jest](note/test/jest.md)

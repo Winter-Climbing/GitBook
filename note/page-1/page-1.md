@@ -1,8 +1,10 @@
-# JSX
+# JSX
 
 JSX란 JavaScript를 확장한 문법이다. UI가 어떻게 생겨야 하는지 설명하기 위해 React와 함께 사용된다. (Vue나 Solid 등에서도 사용되긴 한다.)
 
 ## 예시
+
+JSX가 무엇을, 어떻게 추상화 했는지 간단한 코드 예시들
 
 ```typescript
 React.createElement(태그, property, value);

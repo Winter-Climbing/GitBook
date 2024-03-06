@@ -255,41 +255,117 @@ export default defineConfig({
 });
 ```
 
-### 테스트 도구 설치 (Jest)
+### 테스트 도구 설치 (Vitest)
 
-- jest 설치 명령어
+[Vitest 공식 문서](https://vitest.dev/guide/)
+
+vitest 설치 명령어
 
 ```typescript
-npm i -D jest @types/jest @swc/core @swc/jest \
-  jest-environment-jsdom \
-  @testing-library/react @testing-library/jest-dom@5.16.4
+npm install -D vitest jsdom @testing-library/react @testing-library/jest-dom
 ```
 
-- jest.config.js 파일 생성 후 설정
+package.json 명령어 입력
 
 ```typescript
-module.exports = {
-  testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
-  transform: {
-    '^.+\\.(t|j)sx?$': [
-      '@swc/jest',
-      {
-        jsc: {
-          parser: {
-            syntax: 'typescript',
-            jsx: true,
-            decorators: true,
-          },
-          transform: {
-            react: {
-              runtime: 'automatic',
-            },
-          },
-        },
-      },
-    ],
+  "scripts": {
+    "test": "vitest",
+  }
+```
+
+tests/setup.ts 파일 생성 및 설정
+
+```typescript
+import { afterEach } from 'vitest';
+import { cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom/vitest';
+
+afterEach(() => {
+  cleanup();
+});
+```
+
+vite.config.js 파일 생성 및 설정
+
+```typescript
+ test: {
+  environment: 'jsdom',
+  setupFiles: ['./tests/setup.ts'],
+  testMatch: ['./tests/**/*.test.tsx'],
+  globals: true
+ }
+```
+
+tsconfig.json, tsconfig.node.json 파일에 global 추가
+
+```typescript
+// tsconfig.json
+// tsconfig.node.json
+
+  "compilerOptions": {
+    ...
+    "types": ["vitest/globals"]
+    ...
   },
-  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
-};
 ```
+
+test 컴포넌트 만들기
+
+```typescript
+// tests/App.test.tsx
+
+import { render, screen } from '@testing-library/react';
+import App from '../src/App';
+// import { describe, expect, it } from "vitest";
+
+describe('App', () => {
+  it('renders headline', () => {
+    render(<App />);
+    const headline = screen.getByText(/It works and you found me!/i);
+    expect(headline).toBeInTheDocument();
+  });
+});
+
+// App.tsx
+import './App.css';
+
+function App() {
+  return (
+    <div>
+      <h1>It works and you found me!</h1>
+    </div>
+  );
+}
+
+export default App;
+```
+
+💩 Error
+
+### 'Assertion<HTMLElement>' 형식에 'toBeInTheDocument' 속성이 없습니다
+
+tsconfig.json 파일에 아래 코드 추가
+
+```typescript
+compileOptions: {
+  "types": ["vitest/globals", "@testing-library/jest-dom"]
+}
+```
+
+### 'React'는 UMD 전역을 참조하지만 현재 파일은 모듈입니다
+
+tsconfig.json 파일에 아래 코드 추가
+
+```typescript
+{
+  "compilerOptions": {
+      ...
+    },
+  "include": ["src", "**/*.tsx"]
+}
+```
+
+그 외 참고 문서
+
+- [DaleSeo](https://www.daleseo.com/vitest/)
+-

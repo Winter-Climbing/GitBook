@@ -242,7 +242,7 @@ vite-tsconfig-paths 설치
 npm i -D vite-tsconfig-paths
 ```
 
-vite-config.ts 파일 수정
+vite-config.ts 파일 tsconfigPaths() 코드 추가
 
 ```typescript
 import { defineConfig } from 'vite';
@@ -253,6 +253,20 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
 });
+```
+
+tsconfig.json 파일 코드 추가
+
+```typescript
+compilerOptions: {
+  ...
+  "baseUrl": "src",
+  "paths": {
+    "@/*": ["*"],
+    "@components/*": ["components/*"]
+  }
+  ...
+}
 ```
 
 ### 테스트 도구 설치 (Vitest)

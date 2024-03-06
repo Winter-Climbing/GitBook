@@ -290,10 +290,16 @@ package.json 명령어 입력
 tests/setup.ts 파일 생성 및 설정
 
 ```typescript
-import { afterEach } from 'vitest';
+import { afterEach, beforeAll } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 
+// 각 단위 테스트가 진행되기 전 실행되는 함수
+beforeAll(() => {
+  console.log('root - beforeAll');
+});
+
+// 각 단위 테스트가 진행되고 스코프를 초기화한다.
 afterEach(() => {
   cleanup();
 });
@@ -382,4 +388,4 @@ tsconfig.json 파일에 아래 코드 추가
 그 외 참고 문서
 
 - [DaleSeo](https://www.daleseo.com/vitest/)
--
+- [Configure Vitest with React Testing Library](https://dev.to/pacheco/configure-vitest-with-react-testing-library-5cbb)

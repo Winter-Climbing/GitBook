@@ -11,6 +11,8 @@
   * [JSX](note/page-1/page-1.md)
 * [Test](note/test/README.md)
   * [Jest](note/test/jest.md)
+* [단어 정리](note/undefined/README.md)
+  * [DB](note/undefined/db.md)
 
 ## 회고
 

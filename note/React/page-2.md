@@ -1,199 +1,48 @@
-학습 키워드
-REST API 란 무엇인가?
-GraphQL 란 무엇인가?
-GraphQL은 왜 등장했는가?
-REST API vs GraphQL
-JSON
-DSL(Domain-Specific Language)
-선언형 프로그래밍
-명령형 프로그래밍
-SRP(단일 책임 원칙)
-Atomic Design
-React component 와 props
-React state란?
-DRY 원칙
-SSOT(Single Source of Truth)
-useState
-1급 객체(first-class object)란?
-Lifting State Up
+# Component
 
-React의 강력한 특징 중 하나
+## 키워드
 
-- 컴포넌트 하나하나는 단순해야한다.
+- SRP(단일 책임 원칙)
+- Atomic Design
+- SSOT(Single Source of Truth)
 
-# 개발환경
+### SRP
 
-### 학습 키워드
+- 컴포넌트를 생성할 때 단일 책임 원칙을 지킬 것을 유념하자.
+- 하나의 컴포넌트가 다양한 일을 한다면 재사용성이 떨어지고 테스트하기 어려워진다.
+- 디자인적 관점에서 SRP를 바라볼 수도 있다. 대표적인 패턴이 아토믹 패턴
+- 데이터 관점에서 SRP를 바라볼 수도 있다. Information Architecture로 JSON Schema의 영향을 받았다.
 
-- Node.js
-- NPM(Node Package Manager)
-  - package.json / package-lock.json
-  - node_modules
-  - npx
-- ES Modules vs CommonJS
+### Atomic Design
 
-### REST란
+1. Atom
 
-- HTTP URI를 통해 자원을 명시하고, HTTP Method를 통해 해당 자원에 대한 CRUD Operation을 적용하는 것을 뜻한다.
+- 아톰은 가장 아래 계층에 위치하며, 버튼/텍스트 등 더 이상 분할할 수 없는 컴포넌트를 구현한다.
+- 크기, 문장, 색상과 같은 요소들까지 부모로부터 제어 받는다.
 
-- npx는 node_module .bin 폴더에 설치되어 있는 파일들을 실행시키는 명령어다.
+2. Molecules
 
-- fnm (Fast Node Manager)
+- 라벨이 붙은 텍스트 박스와 같이 아톰 여러 개를 조합해서 구축한 UI 컴포넌트이다.
+- 몰리큘 역시 아톰과 같이 상태나 동작을 갖지 않으며, 필요한 데이터는 부모로부터 제어 받는다.
+- 몰리큘은 단일한 역할을 갖는 UI만을 구현한다.
 
-  - fnm은 노드 버전 관리 도구이다.
-  - nvm을 사용하지 않는 이유는 더 빠르고 경량화되어 있기 때문이다.
+3. Organisms
 
-- package.json
-  - 현 프로잭트에 관한 정보 및 모듈들의 의존성을 관리하는 파일
+- 등록 폼, 헤더와 같이 보다 구체적인 UI 컴포넌트를 구현한다.
+- 도메인 지식에 의존한 데이터를 받거나, 독자적인 작동을 가질 . 수있다.
+- 다만 오거니즘부터는 프레젠테이션 컴포넌트와 컨테이너 컴포넌트를 구분해서 구현한다. (여기서 알 수 있는 것은 한 계층에서도 여러 컴포넌트로 구현될 수 있다는 점이다.)
 
-```typescript
-# package.json
+4. Templates
 
-{
-  "name": "react-demo", // 프로젝트 이름 (케밥케이스 주로 사용)
-  "version": "0.0.0",
-  "description": "React Application Demo",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }, // 에러 메시지 작성
-  "keywords": [],
-  "author": "Koo",
-  "license": "ISC"
-}
+- 전체 레이아웃을 구현한다.
+- 오거니즘 컴포넌트를 가져와 배치하고 css로 각 컴포넌트의 레이아웃을 조정한다.
 
-```
+5. Page
 
-### .gitignore
+- 최상위 컴포넌트로 페이지 단위의 UI 컴포넌트를 구현한다.
+- 레이아웃은 템플릿에서 하고 여기서는 상태 관리, 라우터 처리, API 호출 등의 사이드 이펙트를 처리한다.
 
-- [gitignore 파일 생성 주소](https://www.toptal.com/developers/gitignore)
-- [github node gitignore](https://github.com/github/gitignore/blob/main/Node.gitignore)
+### SSOT(Single Source of Truth)
 
-### Typescript 설치 및 환경설정
-
-### ESLint 설치 및 환경설정
-
-```typescript
-Ok to proceed? (y)
-
-? How would you like to use ESLint?
-> To check syntax, find problems, and enforce code style
-
-// commonJS가 있으나 최근 추세는 esModule로 옮겨지고 있는 추세다
-? What type of modules does your project use?
-> JavaScript modules (import/export)
-
-? Which framework does your project use?
-> React
-
-? Does your project use TypeScript?
-> Yes
-
-? Where does your code run?
-> Browser
-
-// style 가이드를 커스텀으로? 적용되어 있는 다른 스타일로
-? How would you like to define a style for your project?
-> Use a popular style guide
-
-// XO 버전으로 사용하겠다.
-? Which style guide do you want to follow?
-> XO: https://github.com/xojs/eslint-config-xo-typescript
-
-// eslint 포맷 방식
-? What format do you want your config file to be in?
-> JavaScript
-
-? Would you like to install them now?
-> Yes
-
-? Which package manager do you want to use?
-> npm
-```
-
-```typescript
-// .eslintrc.js 파일 수정
-
-// jest 파일도 검사하겠다는 뜻
-env: {
-  ...
-  jest: true;
-  ...
-}
-```
-
-- .eslintignore 파일 생성 후 .gitignore 파일과 동일하게 작성
-
-🤬 Error
-
-> Expected indentation of 1 tab but found 2 spaces.
-
-- eslintrc.js에서 위와 같은 에러가 떴다.
-- ESlint와 Prettier의 포맷팅 충돌로 추정하고 문제를 해결했다.
-
-```typescript
-// eslint-config-prettier 설치 후
-npm i -D eslint-config-prettier
-
-// .eslintrc.* 파일의 extends 배열에 prettier 요소를 추가한다.
-...
-  extends: ['xo', 'plugin:react/recommended', 'prettier']
-...
-```
-
-### React 설치 및 설정
-
-### 테스트 도구 설치 (Jest)
-
-- jest 설치 명령어
-
-```typescript
-npm i -D jest @types/jest @swc/core @swc/jest \
-  jest-environment-jsdom \
-  @testing-library/react @testing-library/jest-dom@5.16.4
-```
-
-- jest.config.js 파일 생성 후 설정
-
-```typescript
-module.exports = {
-  testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
-  transform: {
-    '^.+\\.(t|j)sx?$': [
-      '@swc/jest',
-      {
-        jsc: {
-          parser: {
-            syntax: 'typescript',
-            jsx: true,
-            decorators: true,
-          },
-          transform: {
-            react: {
-              runtime: 'automatic',
-            },
-          },
-        },
-      },
-    ],
-  },
-  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
-};
-```
-
-### Parcel 설치 및 환경설정
-
-- 번들링 명령어를 작성하기 위해 package.js 파일 수정
-
-```typescript
-"scripts": {
-  "start": "parcel --port 8080", // run 명령어
-  "build": "parcel build", // build 명령어
-  "check": "tsc --noEmit",
-  "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .", // eslint --fix 명령어
-  "test": "jest",
-  "coverage": "jest --coverage --coverage-reporters html",
-  "watch:test": "jest --watchAll"
-},
-```
+- 모든 비즈니스 데이터는 하나의 공간에 저장되어야 한다.
+- React로 이야기하면 트리 구조에서 최상위 컴포넌트에서 비즈니스 데이터를 가지고 props로 전달해줘야 한다고 얘기할 수 있겠다.

@@ -9,6 +9,8 @@
   - [Type vs Interface](note/typescript/type-vs-interface.md)
 - [React](note/React/README.md)
   - [JSX](note/React/JSX.md)
+  - [Component](note/React/Component.md)
+  - [State](note/React/State.md)
 - [Test](note/test/README.md)
   - [Jest](note/test/jest.md)
 - [용어정리](note/용어정리/README.md)

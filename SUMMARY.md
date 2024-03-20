@@ -16,6 +16,7 @@
 - [용어정리](note/용어정리/README.md)
   - [DB](note/용어정리/db.md)
   - [Data](note/용어정리/data.md)
+  - [REST](note/용어정리/REST.md)
 
 ## 회고
 

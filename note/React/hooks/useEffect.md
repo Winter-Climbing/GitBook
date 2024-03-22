@@ -55,6 +55,8 @@ useEffect(() => {
 
 ## 🎯 잘 사용하는 방법
 
+1. 익명 함수를 경우에 따라 잘 작명하자
+
 ```typescript
 // 익명 함수
 useEffect(() => {
@@ -69,6 +71,31 @@ useEffect(
   [user.id]
 )
 ```
+
+2. 데이터 페칭하기 (주의할 점 4번과 연결)
+
+```typescript
+useEffect(() => {
+  let ignore = false;
+
+  async function startFetching() {
+    const json = await fetchTodos(userId);
+    if (!ignore) {
+      setTodos(json);
+    }
+  }
+
+  startFetching();
+
+  return () => {
+    ignore = true;
+  };
+}, [userId]);
+```
+
+더 이상 관련이 없는 페치가 애플리케이션에 계속 영향을 끼치지 않도록 해야 한다. 따라서 클린업 함수를 통해서 해결해줘야 한다. 참고로 개발 환경에서는 네트워크 탭에 두 개의 페치가 표시되나 신경 꺼도 된다.
+
+<br>
 
 ## 💩 주의할 점
 
@@ -110,5 +137,6 @@ useEffect(() => {
 
 ## 출처
 
+- [리액트 공식문서](https://react-ko.dev/learn/synchronizing-with-effects)
 - [useEffect 완벽 가이드](https://overreacted.io/a-complete-guide-to-useeffect/)
 - [모던 리액트 Deep Dive](https://m.yes24.com/Goods/Detail/123161563)

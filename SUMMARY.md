@@ -8,6 +8,8 @@
 - [Typescript](note/typescript/README.md)
   - [Type vs Interface](note/typescript/type-vs-interface.md)
 - [React](note/React/README.md)
+  - [Hooks](note/React/hooks/README.md)
+    - [useEffect](note/React/hooks/useEffect.md)
   - [JSX](note/React/JSX.md)
   - [Component](note/react/component.md)
   - [State](note/React/State.md)
@@ -18,7 +20,6 @@
     - [REST](note/용어정리/network/rest.md)
     - [CORS](note/용어정리/network/CORS.md)
   - [DB](note/용어정리/db.md)
-  - [Data](note/용어정리/data.md)
 
 ## 회고
 

@@ -9,10 +9,6 @@
 
 REST
 
-- HTTP URI를 통해 자원을 명시하고, HTTP Method를 통해 해당 자원에 대한 CRUD Operation을 적용하는 것을 뜻한다.
-
-fetch api, cors(cors는 백엔드만의 문제인가?)
-
 react hook
 
 - useEffect 정리하자
